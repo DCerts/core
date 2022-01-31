@@ -32,13 +32,18 @@ library CertLib {
     struct Cert {
         uint id;
         address schoolId;
-        string studentId;
-        string subjectId;
-        address[] issuers;
-        string semester;
-        string grade;
-        string gradeType;
+        string regNo;
         uint batchId;
+        string conferredOn;
+        string dateOfBirth;
+        string yearOfGraduation;
+        string majorIn;
+        string degreeOf;
+        string degreeClassification;
+        string modeOfStudy;
+        string createdIn;
+        string createdAt;
+        address[] issuers;
     }
 
     function verifyCert(Cert memory _originalCert, Cert memory _cert) public pure returns (bool) {
@@ -48,35 +53,23 @@ library CertLib {
         if (_originalCert.schoolId != _cert.schoolId) {
             return false;
         }
-        if (equals(_originalCert.studentId, _cert.studentId) == false) {
-            return false;
-        }
-        if (equals(_originalCert.subjectId, _cert.subjectId) == false) {
-            return false;
-        }
-        if (equals(_originalCert.semester, _cert.semester) == false) {
-            return false;
-        }
-        if (equals(_originalCert.gradeType, _cert.gradeType) == false) {
-            return false;
-        }
-        if (equals(_originalCert.grade, _cert.grade) == false) {
+        if (equals(_originalCert.regNo, _cert.regNo) == false) {
             return false;
         }
         if (_originalCert.batchId != _cert.batchId) {
             return false;
         }
-        for (uint i = 0; i < _originalCert.issuers.length; i++) {
-            bool found = false;
-            for (uint j = 0; j < _cert.issuers.length; j++) {
-                if (_originalCert.issuers[i] == _cert.issuers[j]) {
-                    found = true;
-                    break;
-                }
-            }
-            if (found == false) {
-                return false;
-            }
+        if (equals(_originalCert.conferredOn, _cert.conferredOn) == false) {
+            return false;
+        }
+        if (equals(_originalCert.dateOfBirth, _cert.dateOfBirth) == false) {
+            return false;
+        }
+        if (equals(_originalCert.yearOfGraduation, _cert.yearOfGraduation) == false) {
+            return false;
+        }
+        if (equals(_originalCert.majorIn, _cert.majorIn) == false) {
+            return false;
         }
         return true;
     }
