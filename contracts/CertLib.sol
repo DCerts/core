@@ -34,6 +34,7 @@ library CertLib {
         address schoolId;
         string regNo;
         uint batchId;
+        string batchRegNo;
         string conferredOn;
         string dateOfBirth;
         string yearOfGraduation;
